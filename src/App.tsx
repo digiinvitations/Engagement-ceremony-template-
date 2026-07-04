@@ -299,39 +299,20 @@ export default function App() {
   }, [actualMusicUrl, musicPlaying]);
 
   // Handle Scroll Progress & Scroll-to-Top visibility
-  const mainScrollContainerRef = useRef<HTMLDivElement>(null);
-
   useEffect(() => {
     const handleScroll = () => {
-      // Default to window scrolling (mobile)
-      let scrollTop = window.scrollY;
-      let totalHeight = document.documentElement.scrollHeight - window.innerHeight;
+      // Show scroll-to-top button after 500px scroll
+      setShowScrollTop(window.scrollY > 500);
 
-      // Use container scrolling if on tablet/desktop where it is the scrollable element
-      if (mainScrollContainerRef.current && window.innerWidth >= 768) {
-        scrollTop = mainScrollContainerRef.current.scrollTop;
-        totalHeight = mainScrollContainerRef.current.scrollHeight - mainScrollContainerRef.current.clientHeight;
-      }
-
-      setShowScrollTop(scrollTop > 500);
-
+      // Scroll progress percentage
+      const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
       if (totalHeight > 0) {
-        setScrollProgress((scrollTop / totalHeight) * 100);
+        setScrollProgress((window.scrollY / totalHeight) * 100);
       }
     };
 
     window.addEventListener("scroll", handleScroll);
-    const container = mainScrollContainerRef.current;
-    if (container) {
-      container.addEventListener("scroll", handleScroll);
-    }
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-      if (container) {
-        container.removeEventListener("scroll", handleScroll);
-      }
-    }
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
 
@@ -437,49 +418,41 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-[100dvh] w-full md:bg-[#1C0507] md:bg-[radial-gradient(circle_at_center,rgba(122,64,70,0.35)_0%,#0d0203_100%)] flex justify-center items-stretch overflow-x-hidden relative text-gray-800">
+    <div className="min-h-[100dvh] bg-[#FFF8F3] bg-gradient-to-b from-[#FFF8F3] to-[#ffece0] font-sans relative text-gray-800">
       
       <audio ref={audioRef} src={actualMusicUrl || undefined} loop preload="auto" playsInline className="hidden" onError={(e) => console.warn("Audio could not load.")} onPlay={() => console.log("Audio playing!")} />
       
-      {/* Simulation/Actual mobile preview container */}
-      <div 
-        ref={mainScrollContainerRef}
-        className="w-full md:h-[95dvh] md:max-h-[900px] md:aspect-[9/16] md:max-w-none md:rounded-[2rem] bg-[#FFF8F3] bg-gradient-to-b from-[#FFF8F3] to-[#ffece0] md:shadow-[0_0_60px_rgba(0,0,0,0.85)] md:border-8 md:border-gray-900 relative flex flex-col min-h-screen md:min-h-0 overflow-x-hidden md:overflow-y-auto scroll-smooth md:translate-x-0"
-      >
-        
-        {/* 1. OVERLAY ENVELOPE COVER (Opening Screen) */}
-        <AnimatePresence>
-          {!isOpened && (
-            <EnvelopeCover
-              key="envelope"
-              isOpen={isOpened}
-              onOpen={handleOpenEnvelope}
-              onSealTap={handleStartMusic}
-              openingBackgroundImageUrl={config.openingBackgroundImageUrl}
-              openingSealImageUrl={config.openingSealImageUrl}
-              openingVideoUrl={config.openingVideoUrl}
-            />
-          )}
-        </AnimatePresence>
-
-        {/* BACKGROUND DECORATIVE MANDALAS (for luxury depth) */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
-          <div className="absolute top-[20%] left-[-150px] w-[400px] h-[400px] rounded-full border border-gold-400/10 flex items-center justify-center">
-            <div className="w-[300px] h-[300px] rounded-full border border-dashed border-gold-400/5 animate-[spin_120s_linear_infinite]" />
-          </div>
-          <div className="absolute top-[50%] right-[-150px] w-[400px] h-[400px] rounded-full border border-gold-400/10 flex items-center justify-center">
-            <div className="w-[300px] h-[300px] rounded-full border border-dashed border-gold-400/5 animate-[spin_100s_linear_reverse_infinite]" />
-          </div>
-          <div className="absolute bottom-[10%] left-[-100px] w-[300px] h-[300px] rounded-full border border-gold-400/5" />
-        </div>
-
-        {/* SCROLL PROGRESS INDICATOR BAR */}
-        <div className="sticky top-0 left-0 w-full z-[100] h-1 bg-transparent">
-          <div
-            className="absolute top-0 left-0 h-1 bg-gradient-to-r from-gold-600 via-gold-400 to-gold-200 shadow-md transition-all duration-100"
-            style={{ width: `${scrollProgress}%` }}
+      {/* 1. OVERLAY ENVELOPE COVER (Opening Screen) */}
+      <AnimatePresence>
+        {!isOpened && (
+          <EnvelopeCover
+            key="envelope"
+            isOpen={isOpened}
+            onOpen={handleOpenEnvelope}
+            onSealTap={handleStartMusic}
+            openingBackgroundImageUrl={config.openingBackgroundImageUrl}
+            openingSealImageUrl={config.openingSealImageUrl}
+            openingVideoUrl={config.openingVideoUrl}
           />
+        )}
+      </AnimatePresence>
+
+      {/* BACKGROUND DECORATIVE MANDALAS (for luxury depth) */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
+        <div className="absolute top-[20%] left-[-150px] w-[400px] h-[400px] rounded-full border border-gold-400/10 flex items-center justify-center">
+          <div className="w-[300px] h-[300px] rounded-full border border-dashed border-gold-400/5 animate-[spin_120s_linear_infinite]" />
         </div>
+        <div className="absolute top-[50%] right-[-150px] w-[400px] h-[400px] rounded-full border border-gold-400/10 flex items-center justify-center">
+          <div className="w-[300px] h-[300px] rounded-full border border-dashed border-gold-400/5 animate-[spin_100s_linear_reverse_infinite]" />
+        </div>
+        <div className="absolute bottom-[10%] left-[-100px] w-[300px] h-[300px] rounded-full border border-gold-400/5" />
+      </div>
+
+      {/* SCROLL PROGRESS INDICATOR BAR */}
+      <div
+        className="fixed top-0 left-0 h-1 bg-gradient-to-r from-gold-600 via-gold-400 to-gold-200 z-50 shadow-md transition-all duration-100"
+        style={{ width: `${scrollProgress}%` }}
+      />
 
       {/* MAIN LAYOUT WRAPPER (Fade in after envelope opens) */}
       <div className={`${isOpened ? "opacity-100" : "opacity-0 pointer-events-none"} transition-opacity duration-1000 relative z-10`}>
@@ -1326,13 +1299,7 @@ export default function App() {
                 <Flower2 size={16} />
               </div>
               <button
-                onClick={() => {
-                  if (window.innerWidth >= 768 && mainScrollContainerRef.current) {
-                    mainScrollContainerRef.current.scrollTo({ top: 0, behavior: "smooth" });
-                  } else {
-                    window.scrollTo({ top: 0, behavior: "smooth" });
-                  }
-                }}
+                onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
                 className="w-12 h-12 rounded-full bg-gradient-to-br from-pink-400 to-pink-600 text-white font-bold flex items-center justify-center shadow-xl border border-pink-300 cursor-pointer hover:scale-105 active:scale-95 transition-transform"
                 title="Scroll To Top"
               >
@@ -1363,7 +1330,6 @@ export default function App() {
         onConfigChange={handleConfigChange}
       />
 
-      </div>
     </div>
   );
 }
