@@ -1,0 +1,12 @@
+            {/* Ganesha Icon */}
+            <motion.div
+              animate={{ scale: [1, 1.08, 1] }}
+              transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
+              className="w-32 h-32 flex items-center justify-center mb-6"
+            >
+              {config.heroSettings?.ganeshaIconUrl ? (
+                <FirestoreImage src={config.heroSettings.ganeshaIconUrl} alt="Ganesha Icon" className="w-full h-full object-contain opacity-80" />
+              ) : (
+                <GaneshaIcon className="w-full h-full text-amber-600 opacity-90" />
+              )}
+            </motion.div>

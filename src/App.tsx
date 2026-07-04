@@ -483,11 +483,17 @@ export default function App() {
             <div className="absolute inset-3 md:inset-4 border-[0.5px] border-amber-400/30 rounded-[30px] md:rounded-[46px] pointer-events-none" />
 
             {/* Ganesha Icon */}
-            {config.heroSettings?.ganeshaIconUrl ? (
-              <FirestoreImage src={config.heroSettings.ganeshaIconUrl} alt="Ganesha Icon" className="w-16 h-16 md:w-20 md:h-20 object-contain opacity-80 mb-6" />
-            ) : (
-              <GaneshaIcon className="w-16 h-16 md:w-20 md:h-20 text-amber-600 opacity-90 mb-6" />
-            )}
+            <motion.div
+              animate={{ scale: [1, 1.08, 1] }}
+              transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
+              className="w-32 h-32 flex items-center justify-center mb-6"
+            >
+              {config.heroSettings?.ganeshaIconUrl ? (
+                <FirestoreImage src={config.heroSettings.ganeshaIconUrl} alt="Ganesha Icon" className="w-full h-full object-contain opacity-80" />
+              ) : (
+                <GaneshaIcon className="w-full h-full text-amber-600 opacity-90" />
+              )}
+            </motion.div>
 
             {/* Shloka */}
             {config.heroSettings?.shloka && (
