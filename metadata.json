@@ -1,0 +1,8 @@
+{
+  "name": "Engagement ceremony Invitations",
+  "description": "A premium, customizable Engagement Ceremony website featuring an interactive love story timeline, animations, music, photo gallery, and RSVP functionality.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

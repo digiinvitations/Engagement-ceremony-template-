@@ -1,0 +1,103 @@
+{
+  "openingBackgroundImageUrl": "fsdb://fsdb_1783137200616_98cjp5j",
+  "openingSealImageUrl": "fsdb://fsdb_1783137211147_kwh4rrm",
+  "openingVideoUrl": "https://www.image2url.com/r2/default/videos/1783082367704-ae2f1066-4cec-434f-b06a-8dd683665d9e.mp4",
+  "bride": {
+    "name": "Ananya",
+    "fatherName": "Shri Devendra Sharma",
+    "motherName": "Smt. Sunita Sharma",
+    "imageUrl": "https://images.unsplash.com/photo-1610030469983-98e550d6193c?q=80&w=800&auto=format&fit=crop",
+    "bio": "A beautiful soul, traditional yet modern, Ananya brings joy and light to everyone around her. She loves classical art, painting, and is the beloved daughter of the Sharma family."
+  },
+  "groom": {
+    "name": "Aarav",
+    "fatherName": "Shri Rajesh Singhal",
+    "motherName": "Smt. Manju Singhal",
+    "imageUrl": "https://images.unsplash.com/photo-1594191632832-7da2260682fa?q=80&w=800&auto=format&fit=crop",
+    "bio": "A visionary tech leader with a warm heart, Aarav is known for his humility and wisdom. He enjoys photography, travelling, and is the proud son of the Singhal family."
+  },
+  "weddingDate": "2026-12-12T18:30:00",
+  "displayDate": "12th December 2026",
+  "hashtag": "#AaravWedsAnanya",
+  "heroTagline": "We Are Engaged",
+  "heroSettings": {
+    "shloka": "॥ श्री गणेशाय नमः ॥\nवक्रतुण्ड महाकाय सूर्यकोटि समप्रभ\nनिर्विघ्नं कुरु मे देव\nसर्वकार्येषु सर्वदा ॥",
+    "introText": "With the blessings of Shri Ganesh and our beloved families, we joyfully invite you to celebrate the union of",
+    "brideParents": "Daughter of Mr. & Mrs. Sharma",
+    "groomParents": "Son of Mr. & Mrs. Patel",
+    "showPetals": true,
+    "ganeshaIconUrl": "fsdb://fsdb_1783137385369_wc15nye"
+  },
+  "musicUrl": "/uploads/upload_1783105518666_sjizx7g.mp3",
+  "youtubeEmbedUrl": "",
+  "envelopeIconUrl": "fsdb://fsdb_1783137245774_n5028rx",
+  "thankYouImageUrl": "",
+  "gallerySubtitle": "Glimpses of Our Journey",
+  "galleryImages": [
+    {
+      "url": "https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=800",
+      "caption": "Eternal Togetherness"
+    },
+    {
+      "url": "https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=800",
+      "caption": "Hand in Hand"
+    },
+    {
+      "url": "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=800",
+      "caption": "Floral Celebrations"
+    },
+    {
+      "url": "https://images.unsplash.com/photo-1532712938310-34cb3982ef74?auto=format&fit=crop&w=800",
+      "caption": "The Promise"
+    }
+  ],
+  "engagementDetails": {
+    "time": "07:00 PM onwards",
+    "venueName": "The Sapphire Crystal Hall, Taj Palace Hotel",
+    "venueAddress": "VIP Road, Colaba, Mumbai, MH - 400001",
+    "mapEmbedUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3773.8402170362376!2d72.8308413!3d18.9219841!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7d1c73a0d5cad%3A0xc70a25a7209c733c!2sTaj%20Mahal%20Tower%2C%20Mumbai!5e0!3m2!1sen!2sin!4v1680000000000!5m2!1sen!2sin",
+    "mapDirectionsUrl": "https://maps.google.com/?q=Taj+Mahal+Tower+Mumbai"
+  },
+  "socialLinks": {
+    "facebook": "https://facebook.com",
+    "instagram": "https://instagram.com"
+  },
+  "familyDetails": {
+    "message": "With the divine blessings of Lord Ganesha and our ancestors, we cordially invite you and your family to grace our Engagement Ceremony.",
+    "welcomingText": "Warmly Welcomed By:",
+    "names": [
+      "Singhal Family",
+      "Sharma Family",
+      "All Relatives and Friends"
+    ]
+  },
+  "welcomeMessage": {
+    "title": "Two Hearts, One Journey",
+    "subtitle": "We invite you to celebrate our love",
+    "text": "Because you have played a very special role in our lives, we would love for you to join us as we embark on this beautiful adventure together. Together with our families, we invite you to share our joy and laughter at our Engagement Ceremony."
+  },
+  "heroImageUrl": "https://images.unsplash.com/photo-1607190074257-dd4b7af0309f?q=100&w=3840&auto=format&fit=crop",
+  "timeline": [
+    {
+      "id": "first_met",
+      "date": "May 14, 2022",
+      "title": "How We Met",
+      "description": "It started with a simple 'Hello' at a common friend's birthday party. We bonded over our shared love for street food and old Bollywood classics.",
+      "icon": "coffee"
+    },
+    {
+      "id": "first_date",
+      "date": "June 02, 2022",
+      "title": "Our First Date",
+      "description": "A magical evening by the Marine Drive. Hours felt like minutes as we talked about our dreams, ambitions, and families.",
+      "icon": "heart"
+    },
+    {
+      "id": "proposal",
+      "date": "August 15, 2025",
+      "title": "The Proposal",
+      "description": "Under a canopy of stars in Udaipur, Aarav got down on one knee. It was a resounding 'YES!' followed by tears of joy.",
+      "icon": "ring"
+    }
+  ]
+}
