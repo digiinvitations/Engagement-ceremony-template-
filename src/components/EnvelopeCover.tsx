@@ -112,7 +112,7 @@ export const EnvelopeCover: React.FC<EnvelopeCoverProps> = ({
         {!isOpening && (
           <motion.div
             exit={{ opacity: 0, scale: 0.5, transition: { duration: 1 } }}
-            className="absolute z-20 flex flex-col items-center justify-center cursor-pointer select-none mt-48 ml-16"
+            className="absolute z-20 flex flex-col items-center justify-center cursor-pointer select-none mt-48 ml-4"
             onClick={handleOpen}
           >
             {/* Pulsing Outer Glow */}
