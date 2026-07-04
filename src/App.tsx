@@ -34,6 +34,7 @@ import { ScratchReveal } from "./components/ScratchReveal";
 import { FallingFlowers } from "./components/FallingFlowers";
 import { FallingPetals } from "./components/FallingPetals";
 import { SectionSeparator } from "./components/SectionSeparator";
+import { Countdown } from "./components/Countdown";
 import confetti from "canvas-confetti";
 
 import { saveConfigToDb, addRsvpToDb, fetchConfigFromDb } from "./lib/db";
@@ -659,6 +660,10 @@ export default function App() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1 }}
           >
+            <div className="text-center relative z-10 mb-8 mt-[-2rem]">
+              <Countdown targetDate={config.weddingDate} />
+            </div>
+
             <SectionSeparator />
 
             {/* 4. INVITATION MESSAGE SECTION */}
