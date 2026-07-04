@@ -112,13 +112,17 @@ export const EnvelopeCover: React.FC<EnvelopeCoverProps> = ({
         {!isOpening && (
           <motion.div
             exit={{ opacity: 0, scale: 0.5, transition: { duration: 1 } }}
-            className="absolute z-20 flex flex-col items-center justify-center cursor-pointer select-none mt-48 ml-10"
+            className="absolute z-20 flex flex-col items-center justify-center cursor-pointer select-none mt-48 ml-24"
             onClick={handleOpen}
           >
             {/* Pulsing Outer Glow */}
             <div className="absolute w-36 h-36 rounded-full bg-white/20 animate-ping duration-[3000ms] pointer-events-none" />
             
-            <div className="w-32 h-32 flex items-center justify-center relative">
+            <motion.div 
+              animate={{ scale: [1, 1.08, 1] }}
+              transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
+              className="w-32 h-32 flex items-center justify-center relative"
+            >
               {openingSealImageUrl && (
                 <FirestoreImage 
                   src={openingSealImageUrl} 
@@ -126,7 +130,7 @@ export const EnvelopeCover: React.FC<EnvelopeCoverProps> = ({
                   className="w-full h-full object-contain drop-shadow-[0_10px_25px_rgba(0,0,0,0.5)]" 
                 />
               )}
-            </div>
+            </motion.div>
             
             {/* Tap Helper Text */}
             <motion.span

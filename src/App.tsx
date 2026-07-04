@@ -1150,13 +1150,18 @@ export default function App() {
           className="py-16 px-4 md:px-8 text-center relative z-10"
         >
           <div className="max-w-2xl mx-auto flex flex-col items-center">
-            {config.envelopeIconUrl ? (
-              <FirestoreImage src={config.envelopeIconUrl} alt="Icon" className="w-[60px] h-[60px] object-contain opacity-80 mb-4" />
-            ) : config.heroSettings?.ganeshaIconUrl ? (
-              <FirestoreImage src={config.heroSettings.ganeshaIconUrl} alt="Ganesha Icon" className="w-[60px] h-[60px] object-contain opacity-80 mb-4" />
-            ) : (
-              <GaneshaIcon size={60} className="text-amber-600 opacity-90 mb-4" />
-            )}
+            <motion.div
+              animate={{ scale: [1, 1.1, 1] }}
+              transition={{ repeat: Infinity, duration: 3, ease: "easeInOut" }}
+            >
+              {config.envelopeIconUrl ? (
+                <FirestoreImage src={config.envelopeIconUrl} alt="Icon" className="w-[80px] h-[80px] object-contain opacity-80 mb-4" />
+              ) : config.heroSettings?.ganeshaIconUrl ? (
+                <FirestoreImage src={config.heroSettings.ganeshaIconUrl} alt="Ganesha Icon" className="w-[80px] h-[80px] object-contain opacity-80 mb-4" />
+              ) : (
+                <GaneshaIcon size={80} className="text-amber-600 opacity-90 mb-4" />
+              )}
+            </motion.div>
             
             <p className="font-accent text-5xl md:text-6xl text-red-700 mb-2">
               Dhanyawaad

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { Users, Check, X, FileSpreadsheet, Trash2, Key, ChevronDown, ChevronUp, Image as ImageIcon, Calendar, Edit3, Settings, Video, Database, Copy, AlertCircle, CheckCircle2 } from "lucide-react";
+import { Users, Check, X, FileSpreadsheet, Trash2, Key, ChevronDown, ChevronUp, Image as ImageIcon, Calendar, Edit3, Settings, Video, Database, Map, Copy, AlertCircle, CheckCircle2 } from "lucide-react";
 import { WeddingConfig } from "../weddingConfig";
 import { uploadToFsdb } from "../lib/fsdb";
 import { deleteLocalRsvp, clearAllLocalRsvps, fetchRsvpsFromDb } from "../lib/db";
@@ -32,7 +32,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({ isOpen, onClose, config,
   const [isLocked, setIsLocked] = useState(false);
   const [rsvps, setRsvps] = useState<RSVPRecord[]>([]);
   
-  const [activeTab, setActiveTab] = useState<"rsvps" | "couple" | "media" | "assets">("rsvps");
+  const [activeTab, setActiveTab] = useState<"rsvps" | "couple" | "media" | "assets" | "events">("rsvps");
 
   // Local state for editing to avoid constant re-renders during typing
   const [editConfig, setEditConfig] = useState<WeddingConfig>(config);
@@ -400,7 +400,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({ isOpen, onClose, config,
                     onClick={() => setActiveTab("couple")}
                     className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-semibold transition-colors shrink-0 ${activeTab === "couple" ? "bg-gold-500/20 text-pink-900" : "text-pink-800/50 hover:bg-gold-500/10"}`}
                   >
-                    <Edit3 size={16} /> Couple Info
+                    <Edit3 size={16} /> Couple Info</button><button onClick={() => setActiveTab("events")} className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-semibold transition-colors shrink-0 ${activeTab === "events" ? "bg-gold-500/20 text-pink-900" : "text-pink-800/50 hover:bg-gold-500/10"}`}><Map size={16} /> Events
                   </button>
 
                   <button
