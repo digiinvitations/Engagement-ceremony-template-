@@ -59,7 +59,7 @@ function handleFirestoreError(error: unknown, operationType: OperationType, path
     operationType,
     path
   };
-  console.error('[Firebase] Firestore Error Trace:', JSON.stringify(errInfo, null, 2));
+  console.warn('[Firebase] Firestore Error Trace:', JSON.stringify(errInfo, null, 2));
   throw new Error(JSON.stringify(errInfo));
 }
 
@@ -82,7 +82,7 @@ export async function saveConfigToDb(newConfig: WeddingConfig) {
     await setDoc(doc(db, "settings", "config"), newConfig);
     console.log("[saveConfigToDb] Successfully saved to Firestore.");
   } catch (err) {
-    console.error("[saveConfigToDb] Failed to save config to Firestore:", err);
+    console.warn("[saveConfigToDb] Failed to save config to Firestore:", err);
     try {
       console.log("[saveConfigToDb] Attempting fallback to Express backend server...");
       const res = await fetch("/api/config", {
@@ -92,7 +92,7 @@ export async function saveConfigToDb(newConfig: WeddingConfig) {
       });
       console.log("[saveConfigToDb] Fallback response status:", res.status);
     } catch (fallbackErr) {
-      console.error("[saveConfigToDb] Fallback to server failed:", fallbackErr);
+      console.warn("[saveConfigToDb] Fallback to server failed:", fallbackErr);
     }
     handleFirestoreError(err, OperationType.WRITE, "settings/config");
   }
@@ -119,7 +119,7 @@ export async function fetchConfigFromDb(): Promise<WeddingConfig | null> {
       console.log("[fetchConfigFromDb] Document not found in Firestore.");
     }
   } catch (err) {
-    console.error("[fetchConfigFromDb] Failed to fetch configuration from Firestore:", err);
+    console.warn("[fetchConfigFromDb] Failed to fetch configuration from Firestore:", err);
   }
   
   // Fallback to Express backend if Firestore fails
@@ -137,7 +137,7 @@ export async function fetchConfigFromDb(): Promise<WeddingConfig | null> {
       }
     }
   } catch (fallbackErr) {
-    console.error("[fetchConfigFromDb] Failed to fetch from backend server:", fallbackErr);
+    console.warn("[fetchConfigFromDb] Failed to fetch from backend server:", fallbackErr);
   }
   
   console.log("[fetchConfigFromDb] Returning null (no config found).");

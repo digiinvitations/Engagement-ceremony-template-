@@ -129,7 +129,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({ isOpen, onClose, config,
   };
 
   // Convert File to Base64 (with automatic compression for images to respect Firestore 1MB limits)
-  const handleImageUpload = (file: File): Promise<string> => {
+  const handleImageUpload = (file: File, isHD = false): Promise<string> => {
     return new Promise((resolve, reject) => {
       if (file.type.startsWith("image/")) {
         const reader = new FileReader();
@@ -139,8 +139,9 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({ isOpen, onClose, config,
             const canvas = document.createElement("canvas");
             let width = img.width;
             let height = img.height;
-            // Compress heavily for the free tier quota
-            const maxDim = 800; 
+            // Compress heavily for the free tier quota, but allow higher resolution (HD) for important screens
+            const maxDim = isHD ? 2048 : 800; 
+            const quality = isHD ? 0.92 : 0.7;
 
             if (width > height) {
               if (width > maxDim) {
@@ -164,7 +165,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({ isOpen, onClose, config,
             ctx.drawImage(img, 0, 0, width, height);
             
             // Use webp to preserve transparency while keeping file size small
-            const compressedBase64 = canvas.toDataURL("image/webp", 0.7);
+            const compressedBase64 = canvas.toDataURL("image/webp", quality);
             try {
               const fsdbUrl = await uploadToFsdb(compressedBase64);
               resolve(fsdbUrl);
@@ -651,7 +652,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({ isOpen, onClose, config,
                               <input type="file" accept="image/*" onChange={async (e) => {
                                 if (e.target.files && e.target.files[0]) {
                                   try {
-                                    const base64 = await handleImageUpload(e.target.files[0]);
+                                    const base64 = await handleImageUpload(e.target.files[0], true);
                                     setEditConfig(prev => ({ ...prev, thankYouImageUrl: base64 }));
                                   } catch (err) {
                                     alert(err instanceof Error ? err.message : "Failed to process image.");
@@ -843,7 +844,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({ isOpen, onClose, config,
                             <input type="file" accept="image/*" onChange={async (e) => {
                               if (e.target.files && e.target.files[0]) {
                                 try {
-                                  const base64 = await handleImageUpload(e.target.files[0]);
+                                  const base64 = await handleImageUpload(e.target.files[0], true);
                                   setEditConfig(prev => ({ ...prev, openingBackgroundImageUrl: base64 }));
                                 } catch (err) {
                                   alert(err instanceof Error ? err.message : "Failed to process image.");
