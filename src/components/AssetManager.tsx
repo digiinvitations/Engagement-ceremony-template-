@@ -99,7 +99,8 @@ export const AssetManager: React.FC = () => {
   const onFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     if (!e.target.files || e.target.files.length === 0) return;
     setIsUploading(true);
-    for (const file of Array.from(e.target.files)) {
+    for (let i = 0; i < e.target.files.length; i++) {
+      const file = e.target.files[i];
       try {
         const url = await handleFileUpload(file);
         setAssets(prev => [{ id: Math.random().toString(36).slice(2), url, name: file.name, type: file.type }, ...prev]);
